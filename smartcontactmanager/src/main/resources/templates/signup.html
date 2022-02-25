@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace=base::layout(~{::section})>
+<head>
+<meta charset="UTF-8" />
+<title>Document</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="my-card mt-2">
+						<div class="container text-center">
+							<img style="width: 80px" alt="" th:src="@{/img/login.png}">
+						</div>
+					
+						<h2 class="text-center">Register Here !!</h2>
+
+						<form th:action="@{/do_register}" method="post">
+
+							<!--  name -->
+							<div class="mb-3">
+								<label for="name_field" class="form-label">Your Name</label> 
+								<input 
+									type="text"
+									class="form-control" 
+									id="name_field" 
+									placeholder="Enter here"
+									name="name"
+									required
+									/>
+							</div>
+
+								<!-- email -->
+								
+								<div class="mb-3">
+								<label for="email_field" class="form-label">Your Email</label> 
+								<input 
+									type="email"
+									class="form-control" 
+									id="email_field" 
+									placeholder="Enter here"
+									aria-describedby="emailHelp"
+									name="email"
+									required
+									/>
+							</div>
+							
+							<!-- password -->
+							
+							<div class="mb-3">
+								<label for="password_field" class="form-label">Your Password</label> 
+								<input 
+									type="password"
+									class="form-control" 
+									id="password_field" 
+									placeholder="Enter here"
+									aria-describedby="emailHelp"
+									name="password"
+									required
+									/>
+							</div>
+							
+							
+							<!-- about -->
+							
+							<div class="mb-3">
+								<textarea name="about" rows="6" class="form-control" placeholder="Emter something about yourself" ></textarea>
+							</div>
+							
+							<!-- terms and condition -->
+							
+							<div class="mb-3 form-check ">
+								<input 
+									type="checkbox"
+									name="aggrement"
+									class="form-check-input"
+									id="aggrement"
+									required
+								/>
+								<lable class="form-check-label" for="aggrement">Accept the term and conditions</lable>
+							</div>
+							
+							<div class="container text-center">
+								<button type="submit" class="btn bg-primary text-white">Submit</button>
+								<button type="reset" class="btn btn-warning">Reset</button>
+							</div>
+							
+								
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
