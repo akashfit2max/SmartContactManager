@@ -16,7 +16,7 @@
 					
 						<h2 class="text-center">Register Here !!</h2>
 
-						<form th:action="@{/do_register}" method="post">
+						<form th:action="@{/do_register}" method="post" th:object="${user}">
 
 							<!--  name -->
 							<div class="mb-3">
@@ -27,6 +27,7 @@
 									id="name_field" 
 									placeholder="Enter here"
 									name="name"
+									th:value = "${user.name}"
 									required
 									/>
 							</div>
@@ -42,6 +43,7 @@
 									placeholder="Enter here"
 									aria-describedby="emailHelp"
 									name="email"
+									th:value = "${user.email}"
 									required
 									/>
 							</div>
@@ -65,18 +67,18 @@
 							<!-- about -->
 							
 							<div class="mb-3">
-								<textarea name="about" rows="6" class="form-control" placeholder="Emter something about yourself" ></textarea>
+								<textarea name="about" rows="6" class="form-control" placeholder="Emter something about yourself" th:value = "${user.about}"></textarea>
 							</div>
 							
 							<!-- terms and condition -->
 							
-							<div class="mb-3 form-check ">
+							<div class="mb-3 form-check">
 								<input 
 									type="checkbox"
 									name="aggrement"
 									class="form-check-input"
 									id="aggrement"
-									required
+									
 								/>
 								<lable class="form-check-label" for="aggrement">Accept the term and conditions</lable>
 							</div>

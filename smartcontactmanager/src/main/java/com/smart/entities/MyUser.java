@@ -114,4 +114,11 @@ public class MyUser {
 		this.contacts = contacts;
 	}
 
+	@Override
+	public String toString() {
+		return String.format(
+				"MyUser [id=%s, name=%s, email=%s, password=%s, role=%s, enabled=%s, imageUrl=%s, about=%s, contacts=%s]",
+				id, name, email, password, role, enabled, imageUrl, about, contacts);
+	}
+
 }
