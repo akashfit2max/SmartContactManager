@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "USER")
@@ -20,11 +23,16 @@ public class MyUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+
+	@NotBlank(message = "Name field is required !!")
+	@Size(min = 2, max = 20, message = "min 2 and max 20 characters allowed in the name field")
 	private String name;
 
 	@Column(unique = true)
+	@Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$", message = "invalid email !")
 	private String email;
 
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$", message = "invalid password !!")
 	private String password;
 	private String role;
 	private boolean enabled;
@@ -33,7 +41,7 @@ public class MyUser {
 	@Column(length = 500)
 	private String about;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "user")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 //	cascade - as u save user all the contacts related to that user would be added vise-versa for delete
 	private List<Contact> contacts = new ArrayList<>();
 

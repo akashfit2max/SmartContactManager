@@ -9,7 +9,19 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 offset-md-3">
-					<div class="my-card mt-2">
+					<div class="my-card">
+					
+					<!-- show alert message  -->
+					
+						<div  th:if="${session.message}"  th:classappend="${session.message.type}" class="alert " role="alert">
+							<p class="text-center" th:text = "${session.message.content}"></p>
+							
+							<!-- to remove content -->
+							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+						
+						
+						
 						<div class="container text-center">
 							<img style="width: 80px" alt="" th:src="@{/img/login.png}">
 						</div>
@@ -23,13 +35,17 @@
 								<label for="name_field" class="form-label">Your Name</label> 
 								<input 
 									type="text"
-									class="form-control" 
+									class="form-control"
+									th:classappend = "${#fields.hasErrors('name') ? 'is-invalid' : ''}" 
 									id="name_field" 
 									placeholder="Enter here"
 									name="name"
 									th:value = "${user.name}"
 									required
 									/>
+									
+									 <div class="invalid-feedback" th:each="e : ${#fields.errors('name')} " th:text="${e}"></div>
+									
 							</div>
 
 								<!-- email -->
@@ -39,6 +55,7 @@
 								<input 
 									type="email"
 									class="form-control" 
+									th:classappend = "${#fields.hasErrors('email') ? 'is-invalid' : ''}" 
 									id="email_field" 
 									placeholder="Enter here"
 									aria-describedby="emailHelp"
@@ -46,6 +63,8 @@
 									th:value = "${user.email}"
 									required
 									/>
+									
+									 <div class="invalid-feedback" th:each="e : ${#fields.errors('email')} " th:text="${e}"></div>
 							</div>
 							
 							<!-- password -->
@@ -55,19 +74,22 @@
 								<input 
 									type="password"
 									class="form-control" 
+									th:classappend = "${#fields.hasErrors('password') ? 'is-invalid' : ''}" 
 									id="password_field" 
 									placeholder="Enter here"
 									aria-describedby="emailHelp"
 									name="password"
 									required
 									/>
+									
+									<div class="invalid-feedback" th:each="e : ${#fields.errors('password')} " th:text="${e}"></div>
 							</div>
 							
 							
 							<!-- about -->
 							
 							<div class="mb-3">
-								<textarea name="about" rows="6" class="form-control" placeholder="Emter something about yourself" th:value = "${user.about}"></textarea>
+								<textarea name="about" rows="6" class="form-control" placeholder="Emter something about yourself" th:text = "${user.about}"></textarea>
 							</div>
 							
 							<!-- terms and condition -->
